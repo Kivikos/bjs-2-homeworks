@@ -138,6 +138,6 @@ class Student {
       exclude(reason) {
         delete this.subjects;
         this.excluded = reason;
-        alert ("Студент" + " " + this.name + " "  + "отчислен успешно :)." + " " + "Причина:" + " " + reason) 
+        alert (`Студент ${this.name} отчислен успешно :). Причина: ${reason}`) 
       }
     }
