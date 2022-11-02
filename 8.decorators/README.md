@@ -129,7 +129,7 @@ setTimeout(() => {
 ```
 ![](https://sun9-east.userapi.com/sun9-44/s/v1/ig2/7KfGj0KiLx3jzhc0fWqseaw_wYXKVbX_9Ym7tkwkkFX5IKdpLzHIgNw4r-0tPrBWxqF3jz8p5QnvGaoycOCYbZRM.jpg?size=383x228&quality=96&type=album)
 
-## Требования к домашней работе
+## Требования к домашней работе:
 
 - браузер;
 - редактор кода, например [Sublime][1] или [Visual Studio Code][2];
