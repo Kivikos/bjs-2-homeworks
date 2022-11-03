@@ -13,30 +13,28 @@ addClock(time, callback, id) {
     if (time === null || typeof(time) != "string") {
         throw new Error("Параметр Time не был указан или указан неверно");
     }
-    let addId = this.alarmCollection.some(() => id == this.alarmCollection[0].id);
+    let addId = this.alarmCollection.some((elem) => id == elem.id);
     if (addId === true) {
         console.error(`Будильник с таким параметром ID уже существует!`);
         return;
     }
-    let signal = {id, time, callback};
-    this.alarmCollection.push(signal);
+    this.alarmCollection.push({id, time, callback});
 }
 
 removeClock(remId) {
     let beforeAlarm = this.alarmCollection.length;
-    let del = this.alarmCollection.findIndex(() => remId == this.alarmCollection[0].id);    
+    let del = this.alarmCollection.findIndex((elem) => remId == elem.id);    
       if (del !== -1) {
       this.alarmCollection.splice(del, 1);
     }
-    let afterAlarm = this.alarmCollection.length;
-      return beforeAlarm !== afterAlarm;
+    return beforeAlarm !== this.alarmCollection.length;
   }
 
 getCurrentFormattedTime() {
-    let date = new Date();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let now = `${hours}:${minutes}`;
+    let now = new Date().toLocaleTimeString("ru-Ru", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
     return now;
 }
 
@@ -44,14 +42,12 @@ start(){
     if (this.timerId != null){
       return;
     }
-    let interval = setInterval( () => {
-        this.alarmCollection.forEach((el) => checkClock(el));
+    this.timerId = setInterval(() => {
+        this.alarmCollection.forEach((elem) => checkClock(elem));
       }, 1000);
-      this.timerId = interval;
-
-    const checkClock = (el) => {
-      if (this.getCurrentFormattedTime() === el.time) {
-        return el.callback();
+    const checkClock = (elem) => {
+      if (this.getCurrentFormattedTime() === elem.time) {
+      return elem.callback;
       }
     }
   }
